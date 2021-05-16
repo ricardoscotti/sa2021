@@ -1,0 +1,26 @@
+{
+  "name": "TestePostgres",
+  "version": "1.0.0",
+  "description": "Teste postgres para os alunos da 2 fase",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.15",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "kill-port": "^1.6.1",
+    "nodemon": "^2.0.7",
+    "sucrase": "^3.18.1"
+  }
+}
