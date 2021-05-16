@@ -18,7 +18,7 @@ class Usuario extends Model{
         })
         this.removeAttribute("id")
         
-        return this
+        return this  
     }
 
     // static associate(model){
