@@ -18,7 +18,7 @@ class Artista extends Model{
             timestamps: false})
         this.removeAttribute("id")
         
-        return this
+        return this 
     }
     //static associate(model){
         //console.log(model)
