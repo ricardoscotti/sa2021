@@ -4,16 +4,18 @@ class Usuario extends Model{
     
     static init(sequelize) {
         super.init({
-            "idbanda": {
+            "id_usuario": {
                 type:Sequelize.SMALLINT, 
                 primarykey: true
             }, 
-            "nome_banda": Sequelize.STRING
+            "login": Sequelize.STRING,
+            "id_artista": Sequelize.STRING,
+            "id_estabelecimento": Sequelize.STRING
         },{
             sequelize, 
             underscored: false, 
             freezeTableName: true, 
-            tableName: 'banda', 
+            tableName: 'usuario', 
             timestamps: false
         })
         this.removeAttribute("id")
