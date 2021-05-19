@@ -8,7 +8,19 @@ class Estabelecimento extends Model{
                 type:Sequelize.SMALLINT, 
                 primarykey: true
             }, 
-            "nome": Sequelize.STRING
+            "nome": Sequelize.STRING,
+            "cnpj": Sequelize.STRING,
+            "telefone_ddd": Sequelize.STRING,
+            "telefone_numero": Sequelize.STRING,
+            "rua": Sequelize.STRING,
+            "numero": Sequelize.INTEGER,
+            "bairro": Sequelize.STRING,
+            "cidade": Sequelize.STRING,
+            "estado": Sequelize.STRING,
+            "cep": Sequelize.STRING,
+            "lat": Sequelize.STRING,
+            "longi": Sequelize.STRING,
+            "complemento": Sequelize.STRING
         },{
             sequelize, 
             underscored: false, 

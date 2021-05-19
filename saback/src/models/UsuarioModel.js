@@ -9,6 +9,7 @@ class Usuario extends Model{
                 primarykey: true
             }, 
             "login": Sequelize.STRING,
+            "senha": Sequelize.STRING,
             "id_artista": Sequelize.STRING,
             "id_estabelecimento": Sequelize.STRING
         },{

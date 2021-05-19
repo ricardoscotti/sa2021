@@ -8,8 +8,19 @@ class Artista extends Model{
                 type:Sequelize.SMALLINT, 
                 primarykey: true
             }, 
-            "nome": 
-            Sequelize.STRING
+            "nome": Sequelize.STRING,
+            "estilo": Sequelize.STRING,
+            "telefone_ddd": '',
+            "telefone_numero": '',
+            "rua": Sequelize.STRING,
+            "numero": Sequelize.INTEGER,
+            "bairro": Sequelize.STRING,
+            "cidade": Sequelize.STRING,
+            "estado": Sequelize.STRING,
+            "cep": Sequelize.STRING,
+            "lat": Sequelize.STRING,
+            "longi": Sequelize.STRING,
+            "complemento": Sequelize.STRING
         },{
             sequelize, 
             underscored: false, 
