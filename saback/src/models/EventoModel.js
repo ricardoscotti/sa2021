@@ -4,16 +4,21 @@ class Evento extends Model{
     
     static init(sequelize) {
         super.init({
-            "idbanda": {
+            "id_evento": {
                 type:Sequelize.SMALLINT, 
                 primarykey: true
             }, 
-            "nome_banda": Sequelize.STRING
+            "dt_evento": Sequelize.DATE,
+            "nome": Sequelize.STRING,
+            "valor": Sequelize.NUMBER,
+            "descricao": Sequelize.STRING,
+            "lat": Sequelize.STRING,
+            "longi": Sequelize.STRING 
         },{
             sequelize, 
             underscored: false, 
             freezeTableName: true, 
-            tableName: 'banda', 
+            tableName: 'evento', 
             timestamps: false
         })
         this.removeAttribute("id")
