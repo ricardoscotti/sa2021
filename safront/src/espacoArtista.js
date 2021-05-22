@@ -35,7 +35,7 @@ import {
       return(
         <TouchableOpacity>
           <View style={styles.row}>
-            <Text> {estabelecimentos.item.nome} </Text>
+            <Text> {estabelecimentos.item.nome} - {estabelecimentos.item.bairro} </Text>
           </View>
         </TouchableOpacity>
       )

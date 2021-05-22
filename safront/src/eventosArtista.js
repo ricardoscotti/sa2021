@@ -9,14 +9,54 @@ import {
     useColorScheme,
     View,
     FlatList,
+    Button,
   } from 'react-native';
 import api from './services/axios';
 
 
 const EventosArtista = () => {
+
+    useEffect(()=>{
+        getEventosArtista()
+      },[])
+
+    const demonstrouInteresse = () => {
+        alert("Sua manifestação foi entregue ao estabelecimento!")
+    }
+
+    const [eventos, setEventos] = useState()
+
+    const getEventosArtista = async () => {
+        try{
+          const response = await api.get('/eventos')
+          const eventos = response.data
+          console.log(eventos)
+          setEventos(eventos)
+        }catch(e){
+          console.log('ERROR', e)
+        }
+      }
+
+    const TextEventosArtista = (eventos) => {
+        return(
+          <TouchableOpacity>
+            <View style={styles.row}>
+              <Text> {eventos.item.nome} </Text>
+              <Button title="Tenho interesse" onPress={demonstrouInteresse}></Button>
+              <Button title="Local"></Button>
+            </View>
+          </TouchableOpacity>
+        )
+      }
+
     return(
     <View>
-        <Text style={styles.textArtista}> "Eventos" </Text>
+        <Text style={styles.textArtista}> Eventos </Text>
+        <FlatList
+        data={eventos}
+        renderItem={TextEventosArtista}
+        keyExtractor= {eventos => eventos.id_evento}>
+        </FlatList>
     </View>
     )};
 
