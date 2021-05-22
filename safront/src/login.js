@@ -12,12 +12,15 @@ import {
   TextInput,
 } from 'react-native';
 
-const Login = () => {
+const Login = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.textEstabelecimento}>Login</Text>
       <TextInput placeholder="Nome" style={styles.input} placeholderTextColor="#000"></TextInput>
       <TextInput placeholder="Telefone" style={styles.input} placeholderTextColor="#000"></TextInput>
+      <TouchableOpacity>
+        <Text style={styles.textEstabelecimento} onPress={()=> {navigation.navigate('espacoArtista')}}>Ir para espaço artista(teste)</Text>
+      </TouchableOpacity>
       <TouchableOpacity>
         <Text style={styles.textEstabelecimento}>Confirmar</Text>
       </TouchableOpacity>

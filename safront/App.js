@@ -14,6 +14,8 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import EspacoArtista from './src/espacoArtista';
+import EventosArtista from './src/eventosArtista';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +25,8 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="inicial" component={Inicial} />
         <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="espacoArtista" component={EspacoArtista} />
+        <Stack.Screen name="eventosArtistas" component={EventosArtista} />
       </Stack.Navigator>
     </NavigationContainer>
   );
