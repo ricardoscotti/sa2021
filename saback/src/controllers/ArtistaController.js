@@ -26,7 +26,7 @@ class ArtistaController {
     return res.json(turmas)
   }
 
-  async index(req, res){
+  async all(req, res){
     try{
       const artistas = await Artista.findAll({
         //include: [
@@ -51,7 +51,11 @@ class ArtistaController {
     return res.json({mensagem: "Deu erro"})
   }
 
-  async update(req,res){      
+  async unique(req,res){  
+    const {id} = req.params
+    const artista = await Artista.findOne({where: {id_artista: id}})
+    return res.json(artista)
+
   }
 
   async delete(req,res){

@@ -2,7 +2,7 @@ import Estabelecimento from "../models/EstabelecimentoModel"
 
 class EstabelecimentoController {
     
-    async index(req, res){
+    async all(req, res){
       try{
         const estabelecimentos = await Estabelecimento.findAll({
           //include: [
@@ -25,6 +25,16 @@ class EstabelecimentoController {
       }
       return res.json({mensagem: "Deu erro"})
     }
+    async unique (req, res) {
+      try{
+        const {id} = req.params
+        const estabelecimento = await Estabelecimento.findOne({where: {id_estabelecimento: id}})
+        res.json(estabelecimento)
+      }catch(e){
+
+      }
+    }
+
   }
   
   export default new EstabelecimentoController();
