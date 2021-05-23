@@ -16,7 +16,8 @@ import {
 } from 'react-native';
 import EspacoArtista from './src/espacoArtista';
 import EventosArtista from './src/eventosArtista';
-import EspacoEstabelecimento from './src/espacoEstabelecimento'
+import EspacoEstabelecimento from './src/espacoEstabelecimento';
+import EventoEstabelecimento from './src/eventosEstabelecimento';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,7 @@ function App() {
         <Stack.Screen name="espacoArtista" component={EspacoArtista} />
         <Stack.Screen name="eventosArtistas" component={EventosArtista} />
         <Stack.Screen name="espacoEstabelecimento" component={EspacoEstabelecimento} />
+        <Stack.Screen name="eventosEstabelecimento" component={EventoEstabelecimento} />
       </Stack.Navigator>
     </NavigationContainer>
   );

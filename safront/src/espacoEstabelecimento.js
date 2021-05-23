@@ -53,7 +53,7 @@ import {
     return (
       <View style={styles.container}>
           <TouchableOpacity>
-        <Text style={styles.textArtista}>Gerenciar meus eventos</Text>
+        <Text style={styles.textArtista} onPress={()=> {navigation.navigate('eventosEstabelecimento')}}>Gerenciar meus eventos</Text>
         </TouchableOpacity>
         <FlatList
         data={artistas}
