@@ -16,10 +16,13 @@ const Login = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.textEstabelecimento}>Login</Text>
-      <TextInput placeholder="Nome" style={styles.input} placeholderTextColor="#000"></TextInput>
-      <TextInput placeholder="Telefone" style={styles.input} placeholderTextColor="#000"></TextInput>
+      <TextInput placeholder="User" style={styles.input} placeholderTextColor="#000"></TextInput>
+      <TextInput placeholder="Passworld" style={styles.input} placeholderTextColor="#000"></TextInput>
       <TouchableOpacity>
         <Text style={styles.textEstabelecimento} onPress={()=> {navigation.navigate('espacoArtista')}}>Ir para espaço artista(teste)</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.textEstabelecimento} onPress={()=> {navigation.navigate('espacoEstabelecimento')}}>Ir para espaço estabelecimento(teste)</Text>
       </TouchableOpacity>
       <TouchableOpacity>
         <Text style={styles.textEstabelecimento}>Confirmar</Text>
@@ -33,7 +36,7 @@ export default Login;
 const styles = StyleSheet.create({
     textEstabelecimento: {
       color: '#836FFF',
-      marginTop: 120,
+      marginTop: 80,
       textAlign: "center",
       fontWeight: "bold",
       fontSize: 30

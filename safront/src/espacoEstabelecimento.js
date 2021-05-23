@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import {
     SafeAreaView,
@@ -12,9 +11,8 @@ import {
     FlatList,
     Image,
   } from 'react-native';
-  import api from './services/axios';
 
-  const EspacoArtista = ({navigation}) => {
+  const EspacoEstabelecimento = ({navigation}) => {
 
     useEffect(()=>{
       getEstabelecimento()
@@ -54,7 +52,7 @@ import {
     return (
       <View style={styles.container}>
           <TouchableOpacity>
-        <Text style={styles.textArtista} onPress={()=> {navigation.navigate('eventosArtistas')}}>Clique aqui para ver os eventos</Text>
+        <Text style={styles.textArtista}>Gerenciar meus eventos</Text>
         </TouchableOpacity>
         <FlatList
         data={estabelecimentos}
@@ -65,7 +63,7 @@ import {
     );
   }
   
-  export default EspacoArtista;
+  export default EspacoEstabelecimento;
 
   const styles = StyleSheet.create({
     textEstabelecimento: {

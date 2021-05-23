@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import EspacoArtista from './src/espacoArtista';
 import EventosArtista from './src/eventosArtista';
+import EspacoEstabelecimento from './src/espacoEstabelecimento'
 
 const Stack = createStackNavigator();
 
@@ -23,10 +24,10 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="inicial" component={Inicial} />
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="espacoArtista" component={EspacoArtista} />
         <Stack.Screen name="eventosArtistas" component={EventosArtista} />
+        <Stack.Screen name="espacoEstabelecimento" component={EspacoEstabelecimento} />
       </Stack.Navigator>
     </NavigationContainer>
   );
