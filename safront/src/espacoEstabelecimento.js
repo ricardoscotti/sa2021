@@ -11,31 +11,32 @@ import {
     FlatList,
     Image,
   } from 'react-native';
+  import api from './services/axios';
 
   const EspacoEstabelecimento = ({navigation}) => {
 
     useEffect(()=>{
-      getEstabelecimento()
+      getArtista()
     },[])
 
-    const [estabelecimentos, setEstabelecimentos] = useState()
+    const [artistas, setArtistas] = useState()
 
-    const getEstabelecimento = async () => {
+    const getArtista = async () => {
       try{
-        const response = await api.get('/estabelecimentos')
-        const estabelecimentos = response.data
-        console.log(estabelecimentos)
-        setEstabelecimentos(estabelecimentos)
+        const response = await api.get('/artistas')
+        const artistas = response.data
+        console.log(artistas)
+        setArtistas(artistas)
       }catch(e){
         console.log('ERROR', e)
       }
     }
 
-    const TextEstabelecimento = (estabelecimentos) => {
+    const TextArtista = (artistas) => {
       return(
         
           <View style={styles.row}>
-            <Text> {estabelecimentos.item.nome} - {estabelecimentos.item.bairro} </Text>
+            <Text> {artistas.item.nome} - {artistas.item.estilo} </Text>
             <TouchableOpacity>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://pics.freeicons.io/uploads/icons/png/18764067051529659194-512.png'}}/>
             </TouchableOpacity>
@@ -55,9 +56,9 @@ import {
         <Text style={styles.textArtista}>Gerenciar meus eventos</Text>
         </TouchableOpacity>
         <FlatList
-        data={estabelecimentos}
-        renderItem={TextEstabelecimento}
-        keyExtractor= {estabelecimentos => estabelecimentos.id_estabelecimento}>
+        data={artistas}
+        renderItem={TextArtista}
+        keyExtractor= {artistas => artistas.id_artista}>
         </FlatList>
       </View>
     );
