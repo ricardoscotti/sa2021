@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import React, { useState, useEffect } from 'react';
 import {
     SafeAreaView,
@@ -23,7 +24,13 @@ import {
 
     const getArtista = async () => {
       try{
-        const response = await api.get('/artistas')
+        const token = await AsyncStorage.getItem('token')
+        const config = {
+          headers:{
+            'Authorization': `Bearer ${token}`
+          }
+        }
+        const response = await api.get('/artistas', config)
         const artistas = response.data
         console.log(artistas)
         setArtistas(artistas)

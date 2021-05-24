@@ -19,19 +19,26 @@ import EventosArtista from './src/eventosArtista';
 import EspacoEstabelecimento from './src/espacoEstabelecimento';
 import EventoEstabelecimento from './src/eventosEstabelecimento';
 
+
 const Stack = createStackNavigator();
 
 function App() {
   return (
+   
     <NavigationContainer>
+    
       <Stack.Navigator initialRouteName="Home">
+      
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="espacoArtista" component={EspacoArtista} />
         <Stack.Screen name="eventosArtistas" component={EventosArtista} />
         <Stack.Screen name="espacoEstabelecimento" component={EspacoEstabelecimento} />
         <Stack.Screen name="eventosEstabelecimento" component={EventoEstabelecimento} />
+        
       </Stack.Navigator>
+      
     </NavigationContainer>
+   
   );
 }
 

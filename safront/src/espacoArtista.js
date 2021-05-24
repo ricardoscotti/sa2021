@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import {
@@ -24,7 +25,13 @@ import {
 
     const getEstabelecimento = async () => {
       try{
-        const response = await api.get('/estabelecimentos')
+        const token = await AsyncStorage.getItem('token')
+        const config = {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+        const response = await api.get('/estabelecimentos', config)
         const estabelecimentos = response.data
         console.log(estabelecimentos)
         setEstabelecimentos(estabelecimentos)
