@@ -12,7 +12,8 @@ import {
     Button,
     Input,
   } from 'react-native';
-  import api from './services/axios'
+  import api from './services/axios';
+  import AsyncStorage from '@react-native-community/async-storage';
 
   const EventosEstabelecimento = () => {
 
@@ -20,18 +21,23 @@ import {
         getEventoporid()
       },[])
 
-    const [eventoporid, setEventoPorId] = useState()
+   const [eventoporid, setEventoPorId] = useState()
 
     const getEventoporid = async () => {
-        try{
-          const response = await api.get('/eventoestabelecimento/2')
-          const eventoporid = response.data
-          console.log(eventoporid)
-          setEventoPorId(eventoporid)
-          console.log("esse é o eventoporid" + eventoporid)
-        }catch(e){
-          console.log('ERROR', e)
+      try{
+        const token = await AsyncStorage.getItem('token')
+        const config = {
+          headers:{
+            'Authorization': `Bearer ${token}`
+          }
         }
+        const response = await api.get('/eventoestabelecimento/2', config)
+        const eventoporid = response.data
+        console.log(eventoporid)
+        setEventoPorId(eventoporid)
+      }catch(e){
+        console.log('ERROR', e)
+      }
       }
 
     const TextEventosEstabelecimento = (eventoporid) => {
