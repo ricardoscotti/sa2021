@@ -43,6 +43,18 @@ class EventoController {
       return res.json({mensagem: "Deu erro"})
     }
 
+    async indexporid(req, res){
+      try{
+        const eventoporid = await Evento.findOne({where: {id_estabelecimento: req.params.id}});
+        return res.json(eventoporid)
+        
+      }catch(error){
+        console.error(error);
+      }
+  
+      return res.json({mensagem: "Deu erro"})
+    }
+
 
   }
   

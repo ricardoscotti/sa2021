@@ -18,7 +18,8 @@ import {
   const EventosEstabelecimento = () => {
 
     useEffect(()=>{
-        getEventoporid()
+        const func = async () => await  getEventoporid()
+        func()
       },[])
 
    const [eventoporid, setEventoPorId] = useState()
@@ -41,7 +42,8 @@ import {
       }
 
     const TextEventosEstabelecimento = (eventoporid) => {
-        return(
+      console.log("TEXTEVENTOS", eventoporid)  
+      return(
         <TouchableOpacity>
             <View style={styles.row}>
               <Text> {eventoporid.item.nome} </Text>
@@ -49,7 +51,7 @@ import {
           </TouchableOpacity>
         )
       }
-
+      console.log("DENTRO DO COMPONENTE", eventoporid)
     return(
     <View style={styles.container}>
         <Text style={styles.textArtista}> Meus Eventos </Text>

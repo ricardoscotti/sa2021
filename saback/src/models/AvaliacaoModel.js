@@ -1,31 +1,27 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from "sequelize";
 
-class Evento extends Model{
+class Avaliacao extends Model{
     
     static init(sequelize) {
         super.init({
-            "id_evento": {
+            "id_usuario": {
                 type:Sequelize.SMALLINT, 
                 primarykey: true
             }, 
-            "id_estabelecimento": Sequelize.STRING,
+            "login": Sequelize.STRING,
+            "senha": Sequelize.STRING,
             "id_artista": Sequelize.STRING,
-            "dt_evento": Sequelize.DATE,
-            "nome": Sequelize.STRING,
-            "valor": Sequelize.NUMBER,
-            "descricao": Sequelize.STRING,
-            "lat": Sequelize.STRING,
-            "longi": Sequelize.STRING 
+            "id_estabelecimento": Sequelize.STRING
         },{
             sequelize, 
             underscored: false, 
             freezeTableName: true, 
-            tableName: 'evento', 
+            tableName: 'usuario', 
             timestamps: false
         })
         this.removeAttribute("id")
         
-        return this
+        return this  
     }
 
     // static associate(model){
@@ -37,4 +33,4 @@ class Evento extends Model{
     // }
 }
 
-export default Evento;
+export default Avaliacao;
