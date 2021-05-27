@@ -45,7 +45,7 @@ class EventoController {
 
     async indexporid(req, res){
       try{
-        const eventoporid = await Evento.findOne({where: {id_estabelecimento: req.params.id}});
+        const eventoporid = await Evento.findAll({where: {id_estabelecimento: req.params.id}});
         return res.json(eventoporid)
         
       }catch(error){

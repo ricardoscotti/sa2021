@@ -1,22 +1,23 @@
 import Sequelize, { Model } from "sequelize";
 
-class Avaliacao extends Model{
+class AvaliacaoArtista extends Model{
     
     static init(sequelize) {
         super.init({
-            "id_usuario": {
+            "id_artista": {
                 type:Sequelize.SMALLINT, 
-                primarykey: true
+                primarykey: true,
             }, 
-            "login": Sequelize.STRING,
-            "senha": Sequelize.STRING,
-            "id_artista": Sequelize.STRING,
-            "id_estabelecimento": Sequelize.STRING
-        },{
+            "id_estabelecimento": {
+                type:Sequelize.SMALLINT, 
+                primarykey: true,
+            },
+            "avaliacao": Sequelize.STRING
+            },{
             sequelize, 
             underscored: false, 
             freezeTableName: true, 
-            tableName: 'usuario', 
+            tableName: 'avaliacaoartista', 
             timestamps: false
         })
         this.removeAttribute("id")
@@ -33,4 +34,4 @@ class Avaliacao extends Model{
     // }
 }
 
-export default Avaliacao;
+export default AvaliacaoArtista;
