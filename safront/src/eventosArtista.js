@@ -26,6 +26,7 @@ const EventosArtista = () => {
     }
 
     const [eventos, setEventos] = useState()
+    
 
     const getEventosArtista = async () => {
         try{

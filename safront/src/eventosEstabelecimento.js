@@ -32,10 +32,11 @@ import {
             'Authorization': `Bearer ${token}`
           }
         }
-        const response = await api.get('/eventoestabelecimento/2', config)
+        const response = await api.get(`/eventoestabelecimento/2`, config)
         const eventoporid = response.data
         console.log(eventoporid)
         setEventoPorId(eventoporid)
+        //console.log('USER', userData)
       }catch(e){
         console.log('ERROR', e)
       }

@@ -18,6 +18,7 @@ const Login = ({navigation}) => {
   const [userInput, setUserInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const [data, setData] = useState(null)
+  
 
   
     const getUser = async (token, tipo, id) => {

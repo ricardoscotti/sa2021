@@ -21,6 +21,8 @@ import {
     },[])
 
     const [artistas, setArtistas] = useState()
+    
+    
 
     const getArtista = async () => {
       try{
@@ -43,11 +45,11 @@ import {
       return(
         
           <View style={styles.row}>
-            <Text> {artistas.item.nome} - {artistas.item.estilo} </Text>
+            <Text> {artistas.item.id_artista} </Text>
             <TouchableOpacity>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://pics.freeicons.io/uploads/icons/png/18764067051529659194-512.png'}}/>
             </TouchableOpacity>
-            <Text>0</Text>
+            <Text> {artistas.item.avaliacao.length} </Text>
             <TouchableOpacity>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://cdn0.iconfinder.com/data/icons/thin-voting-awards/24/thin-0664_dislike_thumb_down_vote-512.png'}}/>
             </TouchableOpacity>
