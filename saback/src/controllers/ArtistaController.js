@@ -1,6 +1,7 @@
 import Artista from "../models/ArtistaModel"
 import Estabelecimento from "../models/EstabelecimentoModel"
 import Banda from "../models/UsuarioModel"
+import AvaliacaoArtista from "../models/AvaliacaoArtistaModel"
 
 class ArtistaController {
   async store(req,res){    
@@ -28,22 +29,43 @@ class ArtistaController {
 
   async all(req, res){
     try{
-      const artistas = await Artista.findAll({
-        //include: [
-          //{
-            //model: Banda,
-            //as: "bandaEvento",
-            //attributes: ["nome_banda"]         
-          //},
-          //{
-            //model: Estabelecimento,
-            //as: "estabelecimentoEvento",
-            //attributes: ["razao_social"] 
-          //}
-        //]
+      const artistas = await Artista.findAll({ 
+         raw: true,
+         nest: true, 
+        include: [
+          {
+            model: AvaliacaoArtista,
+            required: false,
+            as: "avaliacaoartista",
+            attributes: ["avaliacao", "id_artista", "id_estabelecimento"]
+          },
+        ]
       });
+
+      const newArray = artistas.map(item=>{
+        return {
+            id_artista: item.id_artista,
+            avaliacaoartista: item.avaliacaoartista.avaliacao
+            
+        }
+    })
+    const ids = newArray.map(item=>item.id_artista).filter((item,index,array)=>{
+        return array.indexOf(item) === index;
+    }).map(id=>{
+        return {id_artista: id, avaliacao: []}
+    })
+    ids.forEach(id=>{
+        newArray.forEach(item=>{
+            if (id.id_artista === item.id_artista) {
+                id.avaliacao.push(item.avaliacaoartista)
+               
+            }
+        })
+    })
+    console.log(ids)
+
       console.log(artistas)
-      return res.json(artistas)
+      return res.json(ids)
     }catch(error){
       console.error(error);
     }

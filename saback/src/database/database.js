@@ -3,9 +3,10 @@ import Artista from '../models/ArtistaModel';
 import Usuario from '../models/UsuarioModel';
 import Estabelecimento from '../models/EstabelecimentoModel';
 import Evento from '../models/EventoModel';
+import AvaliacaoArtista from '../models/AvaliacaoArtistaModel'
 
 
-const models = [Artista, Usuario, Estabelecimento, Evento]
+const models = [Artista, Usuario, Estabelecimento, Evento, AvaliacaoArtista]
 
 class DataBase {
     constructor(){

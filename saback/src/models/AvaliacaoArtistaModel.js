@@ -1,4 +1,5 @@
 import Sequelize, { Model } from "sequelize";
+import Artista from "./ArtistaModel";
 
 class AvaliacaoArtista extends Model{
     
@@ -6,32 +7,34 @@ class AvaliacaoArtista extends Model{
         super.init({
             "id_artista": {
                 type:Sequelize.SMALLINT, 
-                primarykey: true,
+                primarykey: true
             }, 
-            "id_estabelecimento": {
-                type:Sequelize.SMALLINT, 
-                primarykey: true,
-            },
-            "avaliacao": Sequelize.STRING
-            },{
+            "id_estabelecimento":{ 
+                type:Sequelize.SMALLINT,
+                primarykey: true},
+                "avaliacao": Sequelize.STRING
+        },
+        {
             sequelize, 
             underscored: false, 
             freezeTableName: true, 
             tableName: 'avaliacaoartista', 
             timestamps: false
         })
-        this.removeAttribute("id")
-        
-        return this  
+            this.removeAttribute("id")
+            return this
     }
 
-    // static associate(model){
-    //     this.hasMany(model.Evento, {
-    //         constraint: false,
-    //         foreignKey: 'idBanda',
-    //         targetKey:'idBanda'
-    //     });
-    // }
+            static associate(model){
+                console.log(model) 
+            this.belongsTo(model.Artista, {
+            constraint: false,
+            foreignKey: 'id_artista',
+            targetKey:'id_artista',
+        });
+     
+        
+    }
 }
 
 export default AvaliacaoArtista;
