@@ -14,7 +14,7 @@ import {
 import api from './services/axios';
 
 
-const EventosArtista = () => {
+const EventosArtista = ({navigation}) => {
 
     useEffect(()=>{
         getEventosArtista()
@@ -36,21 +36,23 @@ const EventosArtista = () => {
           console.log('ERROR', e)
         }
       }
-
+    
     const TextEventosArtista = (eventos) => {
         return(
           <TouchableOpacity>
             <View style={styles.row}>
-              <Text> {eventos.item.nome} </Text>
-              <Button title="Tenho interesse" onPress={demonstrouInteresse}></Button>
-              <Button title="Local"></Button>
+              <Text style={styles.textEventos} > {eventos.item.nome} </Text>
+              <Button title="Tenho interesse" color='#8A2BE2'  onPress={demonstrouInteresse}></Button>
+              <Button title="Local" color='#8A2BE2'
+              onPress={()=> {navigation.navigate('mapa',{nome:eventos.item.nome,lat:eventos.item.lat,long:eventos.item.longi})}} >
+              </Button>
             </View>
           </TouchableOpacity>
         )
       }
 
     return(
-    <View>
+    <View style={styles.container}>
         <Text style={styles.textArtista}> Eventos </Text>
         <FlatList
         data={eventos}
@@ -72,26 +74,35 @@ const styles = StyleSheet.create({
   },
     textArtista: {
       color: '#8A2BE2',
-      marginTop: 120,
+      marginTop: 40,
       textAlign: "center",
       fontWeight: "bold",
-      fontSize: 30
+      fontSize: 30,
+      backgroundColor: "#E6E6FA",
   },
     container: {
-        backgroundColor: "#A9A9A9",
+        backgroundColor: "#E6E6FA",
         flex: 1
     },
     row: {
       flex: 1,
       paddingVertical: 25,
-      paddingHorizontal: 15,
+      paddingHorizontal: 30,
       flexDirection: 'row',
       justifyContent: 'space-between',
       fontSize: 60,
       backgroundColor: '#90EE90',
-      marginBottom: 10,
       borderRadius: 10,
-    }
+      marginTop: 10,
+      
+    },
+    textEventos: {
+      
+      color:'#8A2BE2',
+      fontSize: 20,
+      
+    },
+
   
   })
 
