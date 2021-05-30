@@ -5,7 +5,6 @@ class EventoController {
     async index(req, res){
       try{
         const eventos = await Evento.findAll({});
-        console.log(eventos)
         return res.json(eventos)
       }catch(error){
         console.error(error);
@@ -14,9 +13,10 @@ class EventoController {
     }
 
     async create(req, res){
-        const { dt_evento, nome, valor, descricao, lat, longi} = req.body; 
+        const { dt_evento, nome, valor, descricao, lat, longi, id_estabelecimento} = req.body; 
         try{
-            const criaevento = Evento.create({
+            const criaevento = await Evento.create({
+                id_estabelecimento: id_estabelecimento,
                 dt_evento: dt_evento,
                 nome: nome,
                 valor: valor,

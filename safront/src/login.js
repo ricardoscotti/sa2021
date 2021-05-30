@@ -33,7 +33,7 @@ const Login = ({navigation}) => {
           if(tipo === 'artistas'){
             navigation.navigate('espacoArtista')
           }else{
-            navigation.navigate('espacoEstabelecimento')
+            navigation.navigate('espacoEstabelecimento', {userData: userData})
           }
       }
   

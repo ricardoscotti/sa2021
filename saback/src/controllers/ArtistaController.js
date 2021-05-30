@@ -62,9 +62,6 @@ class ArtistaController {
             }
         })
     })
-    console.log(ids)
-
-      console.log(artistas)
       return res.json(ids)
     }catch(error){
       console.error(error);

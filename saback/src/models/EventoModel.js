@@ -7,7 +7,7 @@ class Evento extends Model{
             "id_evento": {
                 type:Sequelize.SMALLINT, 
                 primarykey: true
-            }, 
+            },
             "id_estabelecimento": Sequelize.STRING,
             "id_artista": Sequelize.STRING,
             "dt_evento": Sequelize.DATE,
