@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import React, { useState, useEffect } from 'react';
 import {
     SafeAreaView,
@@ -20,10 +21,18 @@ import {
     },[])
 
     const [artistas, setArtistas] = useState()
+    
+    
 
     const getArtista = async () => {
       try{
-        const response = await api.get('/artistas')
+        const token = await AsyncStorage.getItem('token')
+        const config = {
+          headers:{
+            'Authorization': `Bearer ${token}`
+          }
+        }
+        const response = await api.get('/artistas', config)
         const artistas = response.data
         console.log(artistas)
         setArtistas(artistas)
@@ -36,11 +45,11 @@ import {
       return(
         
           <View style={styles.row}>
-            <Text> {artistas.item.nome} - {artistas.item.estilo} </Text>
+            <Text> {artistas.item.id_artista} </Text>
             <TouchableOpacity>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://pics.freeicons.io/uploads/icons/png/18764067051529659194-512.png'}}/>
             </TouchableOpacity>
-            <Text>0</Text>
+            <Text> {artistas.item.avaliacao.length} </Text>
             <TouchableOpacity>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://cdn0.iconfinder.com/data/icons/thin-voting-awards/24/thin-0664_dislike_thumb_down_vote-512.png'}}/>
             </TouchableOpacity>
@@ -53,9 +62,13 @@ import {
     return (
       <View style={styles.container}>
           <TouchableOpacity>
+<<<<<<< HEAD
         <Text style={styles.textArtista}
         onPress={()=> {navigation.navigate('EventosEstabelecimento')}} 
         >Gerenciar meus eventos</Text>
+=======
+        <Text style={styles.textArtista} onPress={()=> {navigation.navigate('eventosEstabelecimento')}}>Gerenciar meus eventos</Text>
+>>>>>>> e82eebe03641a59bc0199f95d1269c713df4b1ce
         </TouchableOpacity>
         <FlatList
         data={artistas}

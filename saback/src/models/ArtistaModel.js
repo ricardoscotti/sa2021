@@ -26,25 +26,23 @@ class Artista extends Model{
             underscored: false, 
             freezeTableName: true, 
             tableName: 'artista', 
-            timestamps: false})
-        this.removeAttribute("id")
-        
-        return this 
+            timestamps: false
+        })
+            this.removeAttribute("id")
+            return this
     }
-    //static associate(model){
-        //console.log(model)
-        //this.belongsTo(model.Estabelecimento, {
-            //constraint: false, 
-            //foreignKey: "idestabelecimento", 
-            //targetKey: "idestabelecimento", 
-            //as:"estabelecimentoEvento"});
-        //this.belongsTo(model.Banda, {
-            //constraint: false, 
-            //foreignKey: "idbanda", 
-            //targetKey: "idbanda", 
-            //as:"bandaEvento"});    
-    //}
- 
+           
+            static associate(model){
+            console.log(model)
+            this.hasMany(model.AvaliacaoArtista, {
+                constraint: false, 
+                foreignKey: "id_artista", 
+                sourceKey: "id_artista", 
+                as:"avaliacaoartista"});  
+                //this.belongsToMany(model.Estabelecimento,{through: model.AvaliacaoArtista})
+    }
+        
+                
 }
 
 export default Artista;

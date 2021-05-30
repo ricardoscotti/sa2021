@@ -12,6 +12,7 @@ import {
     Button,
   } from 'react-native';
 import api from './services/axios';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 const EventosArtista = ({navigation}) => {
@@ -25,10 +26,17 @@ const EventosArtista = ({navigation}) => {
     }
 
     const [eventos, setEventos] = useState()
+    
 
     const getEventosArtista = async () => {
         try{
-          const response = await api.get('/eventos')
+          const token = await AsyncStorage.getItem('token')
+          const config = {
+            headers:{
+              'Authorization': `Bearer ${token}`
+            }
+          }
+          const response = await api.get('/eventos', config)
           const eventos = response.data
           console.log(eventos)
           setEventos(eventos)

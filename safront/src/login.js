@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useContext, useEffect, useState } from 'react';
+import api from './services/axios'
 import {
   SafeAreaView,
   ScrollView,
@@ -11,21 +11,65 @@ import {
   View,
   TextInput,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage'
+
 
 const Login = ({navigation}) => {
+  const [userInput, setUserInput] = useState('')
+  const [passwordInput, setPasswordInput] = useState('')
+  const [data, setData] = useState(null)
+  
+
+  
+    const getUser = async (token, tipo, id) => {
+          const config = {
+              headers: {
+                  'Authorization': `Bearer ${token}`
+              }
+          }
+          const userResponse = await api.get(`/${tipo}/${id}`, config)
+          const userData = userResponse.data
+          console.log('USER', userData)
+          if(tipo === 'artistas'){
+            navigation.navigate('espacoArtista')
+          }else{
+            navigation.navigate('espacoEstabelecimento')
+          }
+      }
+  
+
+  const userLogin = async (login, senha) => {
+      try {
+          const response = await api.post('/auth/usuario', {login, senha})
+          const {token, id_artista, id_estabelecimento} = response.data
+          if(!token){
+            alert(response.data.mensagem)
+          }else {
+            await AsyncStorage.setItem('token', token)
+            let id
+            let type
+            if(id_artista){
+                id = id_artista
+                type = 'artistas'
+            }else{
+                id = id_estabelecimento
+                type = 'estabelecimentos'
+            }
+            await getUser(token, type, id)
+          }
+
+      }catch(e){
+          alert(e)
+      }
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.textEstabelecimento}>Login</Text>
-      <TextInput placeholder="User" style={styles.input} placeholderTextColor="#000"></TextInput>
-      <TextInput placeholder="Passworld" style={styles.input} placeholderTextColor="#000"></TextInput>
+      <TextInput placeholder="User" style={styles.input} placeholderTextColor="#000" onChangeText={(text)=>setUserInput(text)}></TextInput>
+      <TextInput placeholder="Passworld" style={styles.input} placeholderTextColor="#000" onChangeText={(text)=>setPasswordInput(text)}></TextInput>
       <TouchableOpacity>
-        <Text style={styles.textEstabelecimento} onPress={()=> {navigation.navigate('espacoArtista')}}>Ir para espaço artista(teste)</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.textEstabelecimento} onPress={()=> {navigation.navigate('espacoEstabelecimento')}}>Ir para espaço estabelecimento(teste)</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.textEstabelecimento}>Confirmar</Text>
+        <Text style={styles.textEstabelecimento} onPress={()=>userLogin(userInput, passwordInput)}>Confirmar</Text>
       </TouchableOpacity>
     </View>
   );
