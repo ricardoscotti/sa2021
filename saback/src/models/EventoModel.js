@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import Estabelecimento from "./EstabelecimentoModel";
 
 class Evento extends Model{
     
@@ -28,13 +29,13 @@ class Evento extends Model{
         return this
     }
 
-    // static associate(model){
-    //     this.hasMany(model.Evento, {
-    //         constraint: false,
-    //         foreignKey: 'idBanda',
-    //         targetKey:'idBanda'
-    //     });
-    // }
+    static associate(model){
+        this.belongsTo(model.Estabelecimento, {
+            constraint: false,
+            foreignKey: 'id_estabelecimento',
+            targetKey:'id_estabelecimento'
+        });
+    }
 }
 
 export default Evento;

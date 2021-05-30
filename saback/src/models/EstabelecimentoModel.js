@@ -33,9 +33,14 @@ class Estabelecimento extends Model{
         return this
     }
     
-    // static associate(model){
-    //     this.hasMany(model.Evento);
-    // }
+     static associate(model){
+         this.hasMany(model.Evento,{
+             constraint: false,
+             foreignKey: "id_estabelecimento", 
+             sourceKey: "id_estabelecimento", 
+             as:"estabelecimento"
+         } );
+     }
 
 }
 

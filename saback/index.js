@@ -24,6 +24,7 @@ app.get('/estabelecimentos', EstabelecimentoController.all);
 app.get('/estabelecimentos/:id', EstabelecimentoController.unique);
 app.get('/eventos', EventoController.index);
 app.post('/eventos/criar', EventoController.create);
+app.put('/eventos/:id', EventoController.update);
 app.delete('/eventos/:id', EventoController.delete);
 app.get('/eventoestabelecimento/:id', EventoController.indexporid); 
 app.listen(port, () => {

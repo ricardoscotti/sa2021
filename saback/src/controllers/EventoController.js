@@ -1,10 +1,23 @@
 import Evento from '../models/EventoModel'
+import Estabelecimento from '../models/EstabelecimentoModel'
 
 class EventoController {
     
     async index(req, res){
       try{
-        const eventos = await Evento.findAll({});
+        const eventos = await Evento.findAll({
+          raw: true,
+          nest: true, 
+         include: [
+           {
+             model: Estabelecimento,
+             required: false,
+             as: "Estabelecimento",
+             attributes: ["nome", "lat", "longi"]
+           },
+         ]
+       });
+        
         console.log(eventos)
         return res.json(eventos)
       }catch(error){
@@ -54,6 +67,16 @@ class EventoController {
   
       return res.json({mensagem: "Deu erro"})
     }
+
+    async update(req, res){
+      const { nome, id_estabelecimento, dt_evento, valor, descricao } = req.body; 
+      try{
+     const eventos = await Evento.update({nome, id_estabelecimento, dt_evento, valor, descricao}, {where: {id_evento: req.params.id}})
+     return res.json(eventos)
+      }catch(error){
+        console.log("ERRO AQUI" + error)
+       return res.json({mensagem: "Deu erro"})
+       }}
 
 
   }
