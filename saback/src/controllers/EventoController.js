@@ -56,6 +56,31 @@ class EventoController {
       return res.json({mensagem: "Deu erro"})
     }
 
+    async indexporidevento(req, res){
+      try{
+        const eventoidevento = await Evento.findAll({where: {id_evento: req.params.id},  
+           raw: true,
+           nest: true, 
+         include: [
+           {
+             model: Estabelecimento,
+             required: false,
+             as: "Estabelecimento",
+             attributes: ["nome", "lat", "longi"]
+           }
+         ]
+        });
+        
+        console.log(eventoidevento)
+        return res.json(eventoidevento)
+      }catch(error){
+        console.error(error);
+      }
+      return res.json({mensagem: "Deu erro"})}
+  
+      
+    
+
     async update(req, res){
       const { nome, id_estabelecimento, dt_evento, valor, descricao } = req.body; 
       try{

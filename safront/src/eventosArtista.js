@@ -38,8 +38,11 @@ const EventosArtista = ({navigation}) => {
           }
           const response = await api.get('/eventos', config)
           const eventos = response.data
+          
+          console.log(eventos[5].Estabelecimento.lat)
           console.log(eventos)
           setEventos(eventos)
+          
         }catch(e){
           console.log('ERROR', e)
         }
@@ -52,7 +55,7 @@ const EventosArtista = ({navigation}) => {
               <Text style={styles.textEventos} > {eventos.item.nome} </Text>
               <Button title="Tenho interesse" color='#8A2BE2'  onPress={demonstrouInteresse}></Button>
               <Button title="Local" color='#8A2BE2'
-              onPress={()=> {navigation.navigate('mapa',{nome:eventos.item.nome,lat:eventos.item.lat,long:eventos.item.longi})}} >
+              onPress={()=> {navigation.navigate('mapa',{nome:eventos.item.nome,lat:eventos.item.lat,long:eventos.item.longi, id_evento: eventos.item.id_evento})}} >
               </Button>
             </View>
           </TouchableOpacity>

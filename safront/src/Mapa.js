@@ -2,17 +2,55 @@ import React, { useState, useEffect } from 'react';
 import {StyleSheet,View, Text} from 'react-native';
 import MapView, {Marker,PROVIDER_GOOGLE} from 'react-native-maps';
 import api from './services/axios';
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 
 export default Mapa = ({ route }) => {
-    console.log(route.params.lat, route.params.long)
-    const initialRegion = {
-        latitude: route.params.lat,
-        longitude: route.params.long,
+
+    useEffect(()=>{
+        getEventosPorId()
+      },[])
+
+    console.log(route.params.lat, route.params.long, route.params.id_evento)
+    
+    const [region, setRegion]= useState(initialRegion);
+
+    const [evento, setEvento] = useState()
+    const [eventoLat, setEventoLat] = useState({})
+    const [eventoLongi, setEventoLongi] = useState({})
+
+    
+
+    const getEventosPorId = async () => {
+        console.log("AQUIIII")
+        try{
+          const token = await AsyncStorage.getItem('token')
+          const config = {
+            headers:{
+              'Authorization': `Bearer ${token}`
+            }
+          }
+          const response = await api.get(`/eventoporid/${route.params.id_evento}`, config)
+          const evento = response.data
+          console.log(evento)
+          console.log(evento[0].Estabelecimento.lat)
+           setEventoLat(evento[0].Estabelecimento.lat)
+           setEventoLongi(evento[0].Estabelecimento.longi)
+          
+     
+        }catch(e){
+          console.log('ERROR', e)
+        }
+      }
+
+      const initialRegion = {
+        latitude: Number(eventoLat),
+        longitude: Number(eventoLongi),
         latitudeDelta: 0.09,
         longitudeDelta: 0.045,
     }; 
-    const [region, setRegion]= useState(initialRegion);
+
 return(
     <View style={styles.conteiner}>
         <Text style={styles.textArtista}>Mapa</Text>
@@ -22,7 +60,7 @@ return(
         style={styles.map}
         initialRegion={initialRegion}>
 
-        <Marker coordinate={{latitude:route.params.lat, longitude:route.params.long}}title={route.params.nome} ></Marker>    
+        <Marker coordinate={{latitude:Number(eventoLat), longitude:Number(eventoLongi)}}title={route.params.nome} ></Marker>    
         </MapView>
     </View>
 );

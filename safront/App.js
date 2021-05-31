@@ -14,6 +14,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+
 import EspacoArtista from './src/espacoArtista';
 import EventosArtista from './src/eventosArtista';
 import EspacoEstabelecimento from './src/espacoEstabelecimento';
