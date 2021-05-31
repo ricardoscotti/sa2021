@@ -14,16 +14,12 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+
 import EspacoArtista from './src/espacoArtista';
 import EventosArtista from './src/eventosArtista';
 import EspacoEstabelecimento from './src/espacoEstabelecimento';
-<<<<<<< HEAD
 import Mapa from './src/Mapa';
 // import EventosEstabelecimento from './src/eventosEstabelecimentos';
-=======
-import EventoEstabelecimento from './src/eventosEstabelecimento';
-
->>>>>>> e82eebe03641a59bc0199f95d1269c713df4b1ce
 
 const Stack = createStackNavigator();
 
@@ -33,7 +29,6 @@ function App() {
     <NavigationContainer>
     
       <Stack.Navigator initialRouteName="Home">
-<<<<<<< HEAD
         <Stack.Screen name="login"
          component={Login}
          options={{
@@ -89,17 +84,6 @@ function App() {
          headerTintColor:'#F8F8FF'
         }} /> */}
         </Stack.Navigator>
-=======
-      
-        <Stack.Screen name="login" component={Login} />
-        <Stack.Screen name="espacoArtista" component={EspacoArtista} />
-        <Stack.Screen name="eventosArtistas" component={EventosArtista} />
-        <Stack.Screen name="espacoEstabelecimento" component={EspacoEstabelecimento} />
-        <Stack.Screen name="eventosEstabelecimento" component={EventoEstabelecimento} />
-        
-      </Stack.Navigator>
-      
->>>>>>> e82eebe03641a59bc0199f95d1269c713df4b1ce
     </NavigationContainer>
    
   );

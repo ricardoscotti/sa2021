@@ -26,7 +26,8 @@ app.get('/eventos', EventoController.index);
 app.post('/eventos/criar', EventoController.create);
 app.put('/eventos/:id', EventoController.update);
 app.delete('/eventos/:id', EventoController.delete);
-app.get('/eventoestabelecimento/:id', EventoController.indexporid); 
+app.get('/eventoestabelecimento/:id', EventoController.indexporid);
+app.get('/eventoporid/:id', EventoController.indexporidevento); 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 }) 
