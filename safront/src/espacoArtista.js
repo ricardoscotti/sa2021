@@ -84,13 +84,14 @@ import {
   },
     textArtista: {
       color: '#8A2BE2',
-      marginTop: 120,
+      marginTop: 60,
+      marginEnd: 20,
       textAlign: "center",
       fontWeight: "bold",
-      fontSize: 30
+      fontSize: 25
   },
     container: {
-        backgroundColor: "#A9A9A9",
+        backgroundColor: "#E6E6FA",
         flex: 1
     },
     row: {
@@ -103,6 +104,7 @@ import {
       backgroundColor: '#90EE90',
       marginBottom: 10,
       borderRadius: 10,
+      marginTop: 10
     },
     imagem: {
       width: 30,

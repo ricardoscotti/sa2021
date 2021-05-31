@@ -17,8 +17,9 @@ import {
 import EspacoArtista from './src/espacoArtista';
 import EventosArtista from './src/eventosArtista';
 import EspacoEstabelecimento from './src/espacoEstabelecimento';
-import EventoEstabelecimento from './src/eventosEstabelecimento';
-
+import EventosEstabelecimento from './src/eventosEstabelecimento'
+import Mapa from './src/Mapa';
+// import EventosEstabelecimento from './src/eventosEstabelecimentos';
 
 const Stack = createStackNavigator();
 
@@ -28,15 +29,61 @@ function App() {
     <NavigationContainer>
     
       <Stack.Navigator initialRouteName="Home">
-      
-        <Stack.Screen name="login" component={Login} />
-        <Stack.Screen name="espacoArtista" component={EspacoArtista} />
-        <Stack.Screen name="eventosArtistas" component={EventosArtista} />
-        <Stack.Screen name="espacoEstabelecimento" component={EspacoEstabelecimento} />
-        <Stack.Screen name="eventosEstabelecimento" component={EventoEstabelecimento} />
-        
-      </Stack.Navigator>
-      
+        <Stack.Screen name="login"
+         component={Login}
+         options={{
+           title:'Login',
+          headerStyle:{
+            backgroundColor:'#8A2BE2'
+          },
+          headerTintColor:'#F8F8FF'
+         }} />
+        <Stack.Screen name="espacoArtista" 
+        component={EspacoArtista}
+        options={{
+          title:'Artista',
+         headerStyle:{
+           backgroundColor:'#8A2BE2'
+         },
+         headerTintColor:'#F8F8FF'
+        }} />
+        <Stack.Screen name="eventosArtistas"
+         component={EventosArtista}
+         options={{
+          title:'Eventos',
+         headerStyle:{
+           backgroundColor:'#8A2BE2'
+         },
+         headerTintColor:'#F8F8FF'
+        }} />
+        <Stack.Screen name="mapa" 
+        component={Mapa}
+        options={{
+          title:'Localização',
+         headerStyle:{
+           backgroundColor:'#8A2BE2'
+         },
+         headerTintColor:'#F8F8FF'
+        }} />
+        <Stack.Screen name="espacoEstabelecimento"
+         component={EspacoEstabelecimento}
+         options={{
+          title:'Estabelecimento',
+         headerStyle:{
+           backgroundColor:'#836FFF'
+         },
+         headerTintColor:'#F8F8FF'
+        }} />
+        <Stack.Screen name="EventosEstabelecimento"
+         component={EventosEstabelecimento}
+         options={{
+          title:'Meus eventos',
+         headerStyle:{
+           backgroundColor:'#836FFF'
+         },
+         headerTintColor:'#F8F8FF'
+        }} />
+        </Stack.Navigator>
     </NavigationContainer>
    
   );

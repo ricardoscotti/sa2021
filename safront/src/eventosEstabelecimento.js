@@ -29,11 +29,17 @@ import {
 
    const [eventoporid, setEventoPorId] = useState()
    const [isModalVisible, setisModalVisible] = useState(false);
+   const [isModalVisibleEdit, setisModalVisibleEdit] = useState(false);
    const [nomeEvento, setNomeEvento] = useState('')
    const [valor, setValor] = useState('')
    const [descricao, setDescricao] = useState('')
    const [data, setData] = useState(null)
    const [eventoEditar, setEventoEditar] = useState(null)
+   const [novoNome, setNovoNome] = useState('')
+   const [novoValor, setNovoValor] = useState('')
+   const [novoDescricao, setNovoDescricao] = useState('')
+   const [novoData, setNovoData] = useState('')
+   const [idevento, setidevento] = useState('')
     const getEventoporid = async () => {
       try{
         const token = await AsyncStorage.getItem('token')
@@ -61,7 +67,7 @@ import {
           }
           const response = await api.delete(`/eventos/${evento.id_evento}`, config)
           await getEventoporid()
-          setisModalVisible(false)
+          setisModalVisibleEdit(false)
         }catch(e){
           console.log(e)
         }
@@ -80,9 +86,42 @@ import {
 
     }
 
+    const editaEvento = async () => {
+        try {
+          const token = await AsyncStorage.getItem('token')
+          const config = {
+            headers:{
+              'Authorization': `Bearer ${token}`
+            }
+          }
+          const newdate = novoData.split('/')
+          console.log(newdate)
+          const obj = {
+            id_estabelecimento: route.params?.userData.id_estabelecimento,
+            dt_evento: `${newdate[2]}-${newdate[1]}-${newdate[0]}`,
+            nome: novoNome,
+            valor: novoValor,
+            descricao: novoDescricao,
+          }
+          console.log(obj)
+          const response = await axios.put(`http://localhost:3334/eventos/${idevento}`,obj,config)
+          console.log(response.data)
+          await getEventoporid()
+          setisModalVisibleEdit(false)
+
+        } catch(e){
+          console.log(e)
+        }
+    }
 
     const editarEvento = ({item})=>{
-      setisModalVisible(true)
+      const dataFix  = item.dt_evento.split('-')
+      setidevento(item.id_evento)
+      setNovoNome(item.nome)
+      setNovoValor(item.valor)
+      setNovoDescricao(item.descricao)
+      setNovoData(`${dataFix[2]}/${dataFix[1]}/${dataFix[0]}`)
+      setisModalVisibleEdit(true)
       setEventoEditar(item)
     }
 
@@ -122,6 +161,10 @@ import {
           const response = await axios.post(`http://localhost:3334/eventos/criar`,obj,config)
           console.log('foi',response.data)
           await getEventoporid()
+          setNomeEvento('')
+          setData('')
+          setValor('')
+          setDescricao('')
           setisModalVisible(false)
         }catch(e){
           console.log(e)
@@ -195,14 +238,14 @@ import {
           </View>
         </Modal>
         <Modal animationType='fade'
-            visible={isModalVisible}
-            onRequestClose={() => setisModalVisible(false)}
+            visible={isModalVisibleEdit}
+            onRequestClose={() => setisModalVisibleEdit(false)}
         >
           <View style={styles.modalView}>
             <Text>Editar Evento</Text>
             <TextInput 
-                value={nomeEvento}
-                onChangeText={item => {setNomeEvento(item)}}
+                value={novoNome}
+                onChangeText={item => {setNovoNome(item)}}
                 editable={true}
                 multiline={false}
                 maxLength={200}
@@ -212,8 +255,8 @@ import {
             >
             </TextInput>
             <TextInput 
-                value={valor}
-                onChangeText={item => {setValor(item)}}
+                value={novoValor}
+                onChangeText={item => {setNovoValor(item)}}
                 editable={true}
                 multiline={false}
                 maxLength={200}
@@ -223,8 +266,8 @@ import {
             >
             </TextInput>
             <TextInput 
-                value={descricao}
-                onChangeText={item => {setDescricao(item)}}
+                value={novoDescricao}
+                onChangeText={item => {setNovoDescricao(item)}}
                 editable={true}
                 multiline={false}
                 maxLength={200}
@@ -234,8 +277,8 @@ import {
             >
             </TextInput>
             <TextInputMask mask={"[00]/[00]/[0000]"}
-                             value={data}
-                             onChangeText={item => {setData(item)}}
+                             value={novoData}
+                             onChangeText={item => {setNovoData(item)}}
                              editable={true}
                              multiline={false}
                              maxLength={200}
@@ -245,7 +288,7 @@ import {
           
             >
             </TextInputMask>
-            <TouchableOpacity onPress={criaEvento}>
+            <TouchableOpacity onPress={editaEvento}>
               <Text>Confirmar</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>confirmarExcluir(eventoEditar)}>

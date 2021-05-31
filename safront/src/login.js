@@ -79,7 +79,7 @@ export default Login;
 
 const styles = StyleSheet.create({
     textEstabelecimento: {
-      color: '#836FFF',
+      color: '#8A2BE2',
       marginTop: 80,
       textAlign: "center",
       fontWeight: "bold",
@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
   paddingLeft: 20,
   color: 'black',
   backgroundColor: '#F8F8FF',
-  marginLeft: 80
+  marginLeft: 115,
+  
 }
 })
