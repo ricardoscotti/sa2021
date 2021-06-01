@@ -42,18 +42,31 @@ import {
     }
 
     const TextArtista = (artistas) => {
+      
+      const likes = artistas.item.avaliacao.reduce((acumulador,item)=>{
+        if(item==='L'){
+          acumulador++
+        }
+        return acumulador
+      },0)
+      const dislikes = artistas.item.avaliacao.reduce((acumulador,item)=>{
+        if(item==='D'){
+          acumulador++
+        }
+        return acumulador
+      },0)
       return(
         
           <View style={styles.row}>
-            <Text> {artistas.item.id_artista} </Text>
+            <Text> {artistas.item.nome} </Text>
             <TouchableOpacity>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://pics.freeicons.io/uploads/icons/png/18764067051529659194-512.png'}}/>
             </TouchableOpacity>
-            <Text> {artistas.item.avaliacao.length} </Text>
+            <Text> {likes} </Text>
             <TouchableOpacity>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://cdn0.iconfinder.com/data/icons/thin-voting-awards/24/thin-0664_dislike_thumb_down_vote-512.png'}}/>
             </TouchableOpacity>
-            <Text>0</Text>
+            <Text>{dislikes}</Text>
           </View>
         
       )

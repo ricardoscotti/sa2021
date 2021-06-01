@@ -62,6 +62,25 @@ class ArtistaController {
             }
         })
     })
+    ids.forEach(item=>{
+      artistas.forEach(artista=>{
+        if(item.id_artista === artista.id_artista) {
+          item.nome = artista.nome
+          item.estilo = artista.estilo
+          item.telefone_ddd = artista.nome
+          item.telefone_numero = artista.nome
+          item.rua = artista.nome
+          item.numero = artista.numero
+          item.bairro = artista.bairro
+          item.cidade = artista.cidadee
+          item.estado = artista.estado
+          item.cep = artista.cep
+          item.lat = artista.lat
+          item.longi = artista.longi
+          item.complemento = artista.complemento
+        }
+      })
+    })
       return res.json(ids)
     }catch(error){
       console.error(error);

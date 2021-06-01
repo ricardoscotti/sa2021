@@ -39,7 +39,7 @@ const EventosArtista = ({navigation}) => {
           const response = await api.get('/eventos', config)
           const eventos = response.data
           
-          console.log(eventos[5].Estabelecimento.lat)
+          // console.log(eventos[5].Estabelecimento.lat)ewewewew
           console.log(eventos)
           setEventos(eventos)
           
