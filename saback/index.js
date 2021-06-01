@@ -16,7 +16,7 @@ app.use(express.json())
 
 app.post('/auth/usuario', UsuarioController.index)
 app.use(auth)
-app.post('/avaliacaoartista', AvaliacaoArtistaController.avaliaartista);
+app.post('/avaliacaoartista', AvaliacaoArtistaController.updatelike);
 app.get('/avaliacaoartista', AvaliacaoArtistaController.index);
 app.get('/artistas',auth, ArtistaController.all);
 app.get('/artistas/:id', ArtistaController.unique)

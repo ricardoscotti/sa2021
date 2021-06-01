@@ -3,19 +3,22 @@ import AvaliacaoArtista from "../models/AvaliacaoArtistaModel"
 class AvaliacaoArtistaController {
 
     
-    async avaliaartista(req, res){
+    async updatelike(req, res){
 
         const { avaliacao, id_artista, id_estabelecimento } = req.body; 
         try{
             
-            const avaliacaoporid = await AvaliacaoArtista.findAll({where: {
+            const verificalike = await AvaliacaoArtista.findOne({where: {
                         id_artista: id_artista,
                         id_estabelecimento: id_estabelecimento
-                    }});
-                    console.log("AQUIIIIIII")
-            if (avalicaoporid){
-    
-                const avaliacaoa = AvaliacaoArtista.update({
+                        
+                    }}
+                    );
+                    console.log(verificalike)
+                    
+            if (verificalike){
+                
+                const verificalike = AvaliacaoArtista.update({
                     avaliacao: avaliacao,
                     id_artista: id_artista,
                     id_estabelecimento: id_estabelecimento
@@ -26,10 +29,10 @@ class AvaliacaoArtistaController {
                         id_estabelecimento: id_estabelecimento
                     }
                 });
-    
+                console.log("UPDATEEEE")
             }else{
-    
-                const avaliacaoa = AvaliacaoArtista.create({
+                console.log("CREATEEEEE")
+                const crialike = AvaliacaoArtista.create({
                     avaliacao: avaliacao,
                     id_artista: id_artista,
                     id_estabelecimento: id_estabelecimento
@@ -41,8 +44,29 @@ class AvaliacaoArtistaController {
             console.error(error);
         }
     
-        return res.json({mensagem: "Deu erro"})
+        return res.json({mensagem: "Não se sabe se deu certo ou errado"})
     }
+    
+    // async updatelike(req, res){
+    //     const { id_artista, id_estabelecimento, avaliacao} = req.body; 
+    //     try{
+    //         const updatelike = await AvaliacaoArtista.update({
+    //             id_estabelecimento: id_estabelecimento,
+    //             id_artista: id_artista,
+    //             avaliacao: avaliacao
+
+    //         },{
+    //             where: {
+    //                     id_artista: id_artista,
+    //                     id_estabelecimento: id_estabelecimento
+    //                             }
+    //                         },
+    //         );
+    //     }catch(error){
+    //         console.error(error);
+    //     }
+    //     return res.json({mensagem: "Evento criado com Sucesso"})
+    // }
 
     async index(req, res){
         try{
@@ -52,7 +76,7 @@ class AvaliacaoArtistaController {
         }catch(error){
           console.error(error);
         }
-        return res.json({mensagem: "Deu erro"})
+        return res.json({mensagem: "Deu erro"}) 
       }
 
 }
