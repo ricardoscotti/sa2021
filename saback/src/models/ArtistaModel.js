@@ -38,8 +38,13 @@ class Artista extends Model{
                 constraint: false, 
                 foreignKey: "id_artista", 
                 sourceKey: "id_artista", 
-                as:"avaliacaoartista"});  
-                //this.belongsToMany(model.Estabelecimento,{through: model.AvaliacaoArtista})
+                as:"avaliacaoartista"}); 
+            this.hasMany(model.Interesse, {
+                    constraint: false, 
+                    foreignKey: "id_artista", 
+                    sourceKey: "id_artista", 
+                    as:"interesseList"});  
+
     }
         
                 

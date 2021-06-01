@@ -36,6 +36,15 @@ class Evento extends Model{
             targetKey:'id_estabelecimento'
         });
     }
+
+    // static associate(model){
+    //     this.hasMany(model.Interesse,{
+    //         constraint: false,
+    //         foreignKey: "id_evento", 
+    //         sourceKey: "id_evento", 
+    //         as:"Evento"
+    //     } );
+    // }
 }
 
 export default Evento;
