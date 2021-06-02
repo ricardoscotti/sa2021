@@ -71,7 +71,7 @@ function App() {
          options={{
           title:'Estabelecimento',
          headerStyle:{
-           backgroundColor:'#836FFF'
+           backgroundColor:'#8A2BE2'
          },
          headerTintColor:'#F8F8FF'
         }} />
@@ -80,7 +80,7 @@ function App() {
          options={{
           title:'Meus eventos',
          headerStyle:{
-           backgroundColor:'#836FFF'
+           backgroundColor:'#8A2BE2'
          },
          headerTintColor:'#F8F8FF'
         }} />

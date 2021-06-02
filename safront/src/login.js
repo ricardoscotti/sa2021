@@ -68,8 +68,8 @@ const Login = ({navigation}) => {
       <Text style={styles.textEstabelecimento}>Login</Text>
       <TextInput placeholder="User" style={styles.input} placeholderTextColor="#000" onChangeText={(text)=>setUserInput(text)}></TextInput>
       <TextInput placeholder="Passworld" style={styles.input} placeholderTextColor="#000" onChangeText={(text)=>setPasswordInput(text)}></TextInput>
-      <TouchableOpacity>
-        <Text style={styles.textEstabelecimento} onPress={()=>userLogin(userInput, passwordInput)}>Confirmar</Text>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText} onPress={()=>userLogin(userInput, passwordInput)}>Confirmar</Text>
       </TouchableOpacity>
     </View>
   );
@@ -78,18 +78,19 @@ const Login = ({navigation}) => {
 export default Login;
 
 const styles = StyleSheet.create({
-    textEstabelecimento: {
+ textEstabelecimento: {
       color: '#8A2BE2',
       marginTop: 80,
       textAlign: "center",
       fontWeight: "bold",
       fontSize: 30
-  },
-  container: {
+},
+container: {
     backgroundColor: "#1C1C1C",
-    flex: 1
-  },
-  input:{
+    flex: 1,
+    alignItems: 'center',
+ },
+input:{
   width: 200,
   height: 40,
   marginVertical: 10,
@@ -99,8 +100,23 @@ const styles = StyleSheet.create({
   borderRadius: 10,
   paddingLeft: 20,
   color: 'black',
-  backgroundColor: '#F8F8FF',
-  marginLeft: 115,
-  
-}
+  backgroundColor: '#F8F8FF'
+},
+button: {
+  borderColor: '#8A2BE2',
+  borderWidth: 1,
+  borderRadius: 10,
+  backgroundColor: '#8A2BE2',
+  width: 150,
+  height: 40,
+  alignItems: 'center',
+  marginTop: 15,
+},
+buttonText:{
+  color:"white",
+  marginTop: 8,
+  fontWeight: 'bold',
+  textTransform: 'uppercase',
+  fontSize: 15
+},
 })

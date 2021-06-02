@@ -88,11 +88,10 @@ const styles = StyleSheet.create({
       marginTop: 40,
       textAlign: "center",
       fontWeight: "bold",
-      fontSize: 30,
-      backgroundColor: "#E6E6FA",
+      fontSize: 30
   },
     container: {
-        backgroundColor: "#E6E6FA",
+        backgroundColor: "#1C1C1C",
         flex: 1
     },
     row: {

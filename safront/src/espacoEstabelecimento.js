@@ -58,15 +58,15 @@ import {
       return(
         
           <View style={styles.row}>
-            <Text> {artistas.item.nome} </Text>
+            <Text style={styles.rowText}> {artistas.item.nome} </Text>
             <TouchableOpacity>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://pics.freeicons.io/uploads/icons/png/18764067051529659194-512.png'}}/>
             </TouchableOpacity>
-            <Text> {likes} </Text>
+            <Text style={styles.rowText}> {likes} </Text>
             <TouchableOpacity>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://cdn0.iconfinder.com/data/icons/thin-voting-awards/24/thin-0664_dislike_thumb_down_vote-512.png'}}/>
             </TouchableOpacity>
-            <Text>{dislikes}</Text>
+            <Text style={styles.rowText}>{dislikes}</Text>
           </View>
         
       )
@@ -108,7 +108,7 @@ import {
       fontSize: 30
   },
     container: {
-        backgroundColor: "#E6E6FA",
+        backgroundColor: "#1C1C1C",
         flex: 1
     },
     row: {
@@ -125,6 +125,14 @@ import {
     imagem: {
       width: 30,
       height: 30
+    },
+    rowText:{
+      color: "#8A2BE2",
+      fontSize: 20
+    },
+    rowText:{
+      color: "#8A2BE2",
+      fontSize: 20
     }
   
   })

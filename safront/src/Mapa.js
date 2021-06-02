@@ -70,7 +70,7 @@ return(
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
-        backgroundColor: "#E6E6FA",
+        backgroundColor: "#1C1C1C",
      },
      map: {
         ...StyleSheet.absoluteFillObject,

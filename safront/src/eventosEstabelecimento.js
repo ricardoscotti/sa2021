@@ -129,7 +129,7 @@ import {
       return(
         <TouchableOpacity onPress={()=>editarEvento(eventoporid)}>
             <View style={styles.row}>
-              <Text> {eventoporid.item.nome} </Text>
+              <Text style={styles.rowText}> {eventoporid.item.nome} </Text>
           </View>
           </TouchableOpacity>
         )
@@ -173,7 +173,7 @@ import {
     return(
     <View style={styles.container}>
         <TouchableOpacity onPress={()=>setisModalVisible(true)}>
-          <Text>Criar Evento</Text>
+          <Text style={styles.modalText} >+  </Text>
         </TouchableOpacity>
         <Text style={styles.textArtista}> Meus Eventos </Text>
         <FlatList
@@ -186,7 +186,7 @@ import {
             onRequestClose={() => setisModalVisible(false)}
         >
           <View style={styles.modalView}>
-            <Text>Crie um  Evento</Text>
+            <Text style={styles.modalTextTitle}>Criar Evento </Text>
             <TextInput 
                 value={nomeEvento}
                 onChangeText={item => {setNomeEvento(item)}}
@@ -232,8 +232,8 @@ import {
           
             >
             </TextInputMask>
-            <TouchableOpacity onPress={criaEvento}>
-              <Text>Confirmar</Text>
+            <TouchableOpacity style={styles.button} onPress={criaEvento}>
+              <Text style={styles.buttonText}>Confirmar</Text>
             </TouchableOpacity>
           </View>
         </Modal>
@@ -242,7 +242,7 @@ import {
             onRequestClose={() => setisModalVisibleEdit(false)}
         >
           <View style={styles.modalView}>
-            <Text>Editar Evento</Text>
+            <Text style={styles.modalTextTitle}>Editar Evento</Text>
             <TextInput 
                 value={novoNome}
                 onChangeText={item => {setNovoNome(item)}}
@@ -288,11 +288,11 @@ import {
           
             >
             </TextInputMask>
-            <TouchableOpacity onPress={editaEvento}>
-              <Text>Confirmar</Text>
+            <TouchableOpacity style={styles.button} onPress={editaEvento}>
+              <Text style={styles.buttonText}>Confirmar</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=>confirmarExcluir(eventoEditar)}>
-              <Text>Excluir Evento</Text>
+            <TouchableOpacity style={styles.button} onPress={()=>confirmarExcluir(eventoEditar)}>
+              <Text style={styles.buttonText}>Excluir Evento</Text>
             </TouchableOpacity>
           </View>
         </Modal>
@@ -317,13 +317,13 @@ const styles = StyleSheet.create({
   },
     textArtista: {
       color: '#8A2BE2',
-      marginTop: 120,
+      marginTop: 10,
       textAlign: "center",
       fontWeight: "bold",
       fontSize: 30
   },
     container: {
-        backgroundColor: "#A9A9A9",
+        backgroundColor: "#1C1C1C",
         flex: 1
     },
     row: {
@@ -336,24 +336,57 @@ const styles = StyleSheet.create({
       backgroundColor: '#90EE90',
       marginBottom: 10,
       borderRadius: 10,
+      marginTop: 15
     },
     modalView:{
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#87CEEB'
+      backgroundColor: "#1C1C1C",
+      
     },
     input:{
-      width: 200,
-      height: 40,
+      width: 250,
+      height: 50,
       marginVertical: 10,
       borderWidth: 1,
       paddingLeft: 20,
       fontWeight: 'bold',
       backgroundColor: '#F8F8FF',
       borderRadius: 10,
-      borderColor:"black",
+      borderColor:"#8A2BE2",
       color:"black",
+    },
+    modalText:{
+      textAlign: 'right',
+      fontSize: 50,
+      color: '#8A2BE2',
+    },
+    modalTextTitle:{
+      fontSize:40,
+      color:'#8A2BE2',
+      fontWeight: "bold"
+    },
+    button: {
+      borderColor: '#8A2BE2',
+      borderWidth: 1,
+      borderRadius: 10,
+      backgroundColor: '#8A2BE2',
+      width: 150,
+      height: 40,
+      alignItems: 'center',
+      marginTop: 15,
+    },
+    buttonText:{
+      color:"white",
+      marginTop: 8,
+      fontWeight: 'bold',
+      textTransform: 'uppercase',
+      fontSize: 15
+    },
+    rowText:{
+      color: "#8A2BE2",
+      fontSize: 20
     }
   
   })

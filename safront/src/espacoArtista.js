@@ -44,15 +44,15 @@ import {
       return(
         
           <View style={styles.row}>
-            <Text> {estabelecimentos.item.nome} - {estabelecimentos.item.bairro} </Text>
+            <Text style={styles.rowText}> {estabelecimentos.item.nome} - {estabelecimentos.item.bairro} </Text>
             <TouchableOpacity>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://pics.freeicons.io/uploads/icons/png/18764067051529659194-512.png'}}/>
             </TouchableOpacity>
-            <Text>0</Text>
+            <Text style={styles.rowText}>0</Text>
             <TouchableOpacity>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://cdn0.iconfinder.com/data/icons/thin-voting-awards/24/thin-0664_dislike_thumb_down_vote-512.png'}}/>
             </TouchableOpacity>
-            <Text>0</Text>
+            <Text style={styles.rowText}>0</Text>
           </View>
         
       )
@@ -91,7 +91,7 @@ import {
       fontSize: 25
   },
     container: {
-        backgroundColor: "#E6E6FA",
+        backgroundColor: "#1C1C1C",
         flex: 1
     },
     row: {
@@ -109,6 +109,11 @@ import {
     imagem: {
       width: 30,
       height: 30
+    },
+    rowText:{
+      color: "#8A2BE2",
+      fontSize: 20
     }
+
   
   })
