@@ -4,9 +4,10 @@ import Usuario from '../models/UsuarioModel';
 import Estabelecimento from '../models/EstabelecimentoModel';
 import Evento from '../models/EventoModel';
 import AvaliacaoArtista from '../models/AvaliacaoArtistaModel'
+import Interesse from '../models/InteresseModel';
 
 
-const models = [Artista, Usuario, Estabelecimento, Evento, AvaliacaoArtista]
+const models = [Artista, Usuario, Estabelecimento, Evento, AvaliacaoArtista, Interesse]
 
 class DataBase {
     constructor(){
@@ -14,8 +15,8 @@ class DataBase {
     }
 
     mySQL(){
-        this.connection = new Sequelize({"dialect": "postgres", "host": "localhost", "port": '5433', "username": "postgres", "password": "marinale28", 'database':'SA', define: { timestamp: false, underscored: false, underscoredAll: false}})
 
+        this.connection = new Sequelize({"dialect": "postgres", "host": "localhost", "port": '5433', "username": "postgres", "password": "marinale28", 'database':'SA', define: { timestamp: false, underscored: false, underscoredAll: false}})
         models.map(model => model.init(this.connection)).map(model => model.associate && model.associate(this.connection.models))
     }
 }

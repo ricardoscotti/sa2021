@@ -10,13 +10,14 @@ import EventoController from './src/controllers/EventoController'
 import AvaliacaoArtistaController from './src/controllers/AvaliacaoArtistaController'
 import "./src/database/database"
 import auth from './src/middlewere/auth'
+import InteresseController from './src/controllers/InteresseController'
 app.use(express.json())
 
 
 
 app.post('/auth/usuario', UsuarioController.index)
 app.use(auth)
-app.post('/avaliacaoartista', AvaliacaoArtistaController.avaliaartista);
+app.post('/avaliacaoartista', AvaliacaoArtistaController.updatelike);
 app.get('/avaliacaoartista', AvaliacaoArtistaController.index);
 app.get('/artistas',auth, ArtistaController.all);
 app.get('/artistas/:id', ArtistaController.unique)
@@ -27,7 +28,9 @@ app.post('/eventos/criar', EventoController.create);
 app.put('/eventos/:id', EventoController.update);
 app.delete('/eventos/:id', EventoController.delete);
 app.get('/eventoestabelecimento/:id', EventoController.indexporid);
-app.get('/eventoporid/:id', EventoController.indexporidevento); 
+app.get('/eventoporid/:id', EventoController.indexporidevento);
+app.post('/interesse', InteresseController.create); 
+app.get('/interesse/:id', InteresseController.index);
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 }) 
