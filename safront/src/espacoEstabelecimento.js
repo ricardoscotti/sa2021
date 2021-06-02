@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import {
     SafeAreaView,
@@ -41,6 +42,29 @@ import {
       }
     }
 
+
+    const avaliacao = async (type, artista) => {
+        try{
+          const token = await AsyncStorage.getItem('token')
+          const config = {
+            headers:{
+              'Authorization': `Bearer ${token}`
+            }
+          }
+          const obj = {
+            id_estabelecimento: route.params?.userData.id_estabelecimento,
+            id_artista: artista.item.id_artista,
+            avaliacao: type
+          }
+          const response = await axios.post('http://localhost:3334/avaliacaoartista', obj, config)
+          console.log(response.data)
+          await getArtista()
+        }catch(e){
+
+        }
+    }
+
+
     const TextArtista = (artistas) => {
       
       const likes = artistas.item.avaliacao.reduce((acumulador,item)=>{
@@ -59,11 +83,11 @@ import {
         
           <View style={styles.row}>
             <Text style={styles.rowText}> {artistas.item.nome} </Text>
-            <TouchableOpacity>
-            <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://pics.freeicons.io/uploads/icons/png/18764067051529659194-512.png'}}/>
+            <TouchableOpacity onPress={()=>avaliacao('L', artistas)}>
+            <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://pics.freeicons.io/uploads/icons/png/18764067051529659194-512.png'}} />
             </TouchableOpacity>
             <Text style={styles.rowText}> {likes} </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>avaliacao('D', artistas)}>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://cdn0.iconfinder.com/data/icons/thin-voting-awards/24/thin-0664_dislike_thumb_down_vote-512.png'}}/>
             </TouchableOpacity>
             <Text style={styles.rowText}>{dislikes}</Text>
