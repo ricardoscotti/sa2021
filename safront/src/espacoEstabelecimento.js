@@ -77,6 +77,7 @@ import {
           <TouchableOpacity>
 
         <Text style={styles.textArtista} onPress={()=> {navigation.navigate('EventosEstabelecimento', {userData: route.params?.userData})}}>Gerenciar meus eventos</Text>
+        <Text style={styles.textArtista} onPress={()=> {navigation.navigate('MeusInteressados')}}>Manifestações de Interesse</Text>
 
 
 

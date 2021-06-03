@@ -20,6 +20,7 @@ import EventosArtista from './src/eventosArtista';
 import EspacoEstabelecimento from './src/espacoEstabelecimento';
 import EventosEstabelecimento from './src/eventosEstabelecimento'
 import Mapa from './src/Mapa';
+import MeusInteressados from './src/meusInteressados';
 // import EventosEstabelecimento from './src/eventosEstabelecimentos';
 
 const Stack = createStackNavigator();
@@ -79,6 +80,15 @@ function App() {
          component={EventosEstabelecimento}
          options={{
           title:'Meus eventos',
+         headerStyle:{
+           backgroundColor:'#8A2BE2'
+         },
+         headerTintColor:'#F8F8FF'
+        }} />
+        <Stack.Screen name="MeusInteressados"
+         component={MeusInteressados}
+         options={{
+          title:'Meus Interessados',
          headerStyle:{
            backgroundColor:'#8A2BE2'
          },
