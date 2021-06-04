@@ -15,59 +15,52 @@ import {
     Image,
   } from 'react-native';
 
-  const MeusInteressados = ({navigation}) => {
+  const MeusInteressados = ({route}) => {
 
-    // useEffect(()=>{
-    //   getEstabelecimento()
-    // },[])
+    useEffect(()=>{
+      getMeusInteressados()
+    },[])
 
-    // const [estabelecimentos, setEstabelecimentos] = useState()
+    const [interessados, setMeusInteressados] = useState()
 
-    // const getEstabelecimento = async () => {
-    //   try{
-    //     const token = await AsyncStorage.getItem('token')
-    //     const config = {
-    //       headers: {
-    //         'Authorization': `Bearer ${token}`
-    //       }
-    //     }
-    //     const response = await api.get('/estabelecimentos', config)
-    //     const estabelecimentos = response.data
-    //     console.log(estabelecimentos)
-    //     setEstabelecimentos(estabelecimentos)
-    //   }catch(e){
-    //     console.log('ERROR', e)
-    //   }
-    // }
+    const getMeusInteressados = async () => {
+      try{
+        const token = await AsyncStorage.getItem('token')
+        const config = {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+        const response = await api.get(`/interesse/${route.params?.userData.id_estabelecimento}`, config)
+        const interessados = response.data
+        console.log("INTERESSADOS AQUI")
+        console.log(interessados)
+        setMeusInteressados(interessados)
+      }catch(e){
+        console.log('ERROR', e)
+      }
+    }
 
-    // const TextEstabelecimento = (estabelecimentos) => {
-    //   return(
+    const TextInteressados = (interessados) => {
+      return(
         
-    //       <View style={styles.row}>
-    //         <Text style={styles.rowText}> {estabelecimentos.item.nome} - {estabelecimentos.item.bairro} </Text>
-    //         <TouchableOpacity>
-    //         <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://pics.freeicons.io/uploads/icons/png/18764067051529659194-512.png'}}/>
-    //         </TouchableOpacity>
-    //         <Text style={styles.rowText}>0</Text>
-    //         <TouchableOpacity>
-    //         <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://cdn0.iconfinder.com/data/icons/thin-voting-awards/24/thin-0664_dislike_thumb_down_vote-512.png'}}/>
-    //         </TouchableOpacity>
-    //         <Text style={styles.rowText}>0</Text>
-    //       </View>
+          <View style={styles.row}>
+            <Text style={styles.rowText}> {interessados.item.interesseList.nome} - {interessados.item.Evento.nome} </Text>
+          </View>
         
-    //   )
-    // }
+      )
+    }
 
     return (
       <View style={styles.container}>
         
-        <Text style={styles.textArtista}>Interessados</Text>
+        <Text style={styles.textArtista}>Interessado por Evento</Text>
         
-        {/* <FlatList
-        data={estabelecimentos}
-        renderItem={TextEstabelecimento}
-        keyExtractor= {estabelecimentos => estabelecimentos.id_estabelecimento}>
-        </FlatList> */}
+        <FlatList
+        data={interessados}
+        renderItem={TextInteressados}
+        keyExtractor= {interessados => interessados.id_interesse}>
+        </FlatList>
       </View>
     );
   }

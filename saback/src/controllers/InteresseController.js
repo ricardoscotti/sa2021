@@ -7,7 +7,7 @@ class InteresseController {
     
     async index(req, res){
       try{
-        const interesse = await Interesse.findOne({
+        const interesse = await Interesse.findAll({
             where: {id_estabelecimento: req.params.id},  
            raw: true,
            nest: true, 
@@ -36,16 +36,32 @@ class InteresseController {
     async create(req, res){
         const { id_evento, id_artista, id_estabelecimento} = req.body; 
         try{
-            const criaevento = await Interesse.create({
-                id_estabelecimento: id_estabelecimento,
-                id_evento: id_evento,
-                id_artista: id_artista
-            });
+          console.log("ENTROU NA VERIFICACAO")
+          const verificainteresse = await Interesse.findOne({where: {
+                        id_artista: id_artista,
+                        id_estabelecimento: id_estabelecimento,
+                        id_evento: id_evento
+                        
+                    }}
+                    );
+                    console.log(verificainteresse)
+                    
+            if (verificainteresse){
+              console.log("ACHOU IGUAL, ACABOU")
 
-        }catch(error){
+        }else{
+          console.log("NAO ACHOU E CRIOU")
+          const criainteresse = await Interesse.create({
+            id_estabelecimento: id_estabelecimento,
+            id_evento: id_evento,
+            id_artista: id_artista
+
+        });}
+      
+      }catch(error){
             console.error(error);
         }
-        return res.json({mensagem: "Evento criado com Sucesso"})
+        return res.json({mensagem: "Interesse registrado Sucesso"})
     }
 
     async delete(req, res){

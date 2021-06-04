@@ -31,7 +31,7 @@ const Login = ({navigation}) => {
           const userData = userResponse.data
           console.log('USER', userData)
           if(tipo === 'artistas'){
-            navigation.navigate('espacoArtista')
+            navigation.navigate('espacoArtista', {userData: userData})
           }else{
             navigation.navigate('espacoEstabelecimento', {userData: userData})
           }
@@ -67,7 +67,7 @@ const Login = ({navigation}) => {
     <View style={styles.container}>
       <Text style={styles.textEstabelecimento}>Login</Text>
       <TextInput placeholder="User" style={styles.input} placeholderTextColor="#000" onChangeText={(text)=>setUserInput(text)}></TextInput>
-      <TextInput placeholder="Passworld" style={styles.input} placeholderTextColor="#000" onChangeText={(text)=>setPasswordInput(text)}></TextInput>
+      <TextInput placeholder="Passworld" style={styles.input} placeholderTextColor="#000" onChangeText={(text)=>setPasswordInput(text)} secureTextEntry={true} passworld={true}></TextInput>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText} onPress={()=>userLogin(userInput, passwordInput)}>Confirmar</Text>
       </TouchableOpacity>

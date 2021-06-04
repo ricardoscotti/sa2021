@@ -15,7 +15,7 @@ import {
   } from 'react-native';
   import api from './services/axios';
 
-  const EspacoArtista = ({navigation}) => {
+  const EspacoArtista = ({navigation, route}) => {
 
     useEffect(()=>{
       getEstabelecimento()
@@ -61,7 +61,7 @@ import {
     return (
       <View style={styles.container}>
           <TouchableOpacity>
-        <Text style={styles.textArtista} onPress={()=> {navigation.navigate('eventosArtistas')}}>Clique aqui para ver os eventos</Text>
+        <Text style={styles.textArtista} onPress={()=> {navigation.navigate('eventosArtistas', {userData: route.params?.userData})}}>Clique aqui para ver os eventos</Text>
         </TouchableOpacity>
         <FlatList
         data={estabelecimentos}
