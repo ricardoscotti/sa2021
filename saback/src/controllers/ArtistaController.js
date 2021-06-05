@@ -4,29 +4,7 @@ import Banda from "../models/UsuarioModel"
 import AvaliacaoArtista from "../models/AvaliacaoArtistaModel"
 
 class ArtistaController {
-  async store(req,res){    
-  };
-
-  async turma(req, res){
-    const turmas = await Turma.findAll({
-      where: {},
-      attributes: ['IDTURMA', 'NOMETURMA'],
-      include: [
-        {
-          model: Aluno,
-          as: 'aluno',
-          attributes: ['IDALUNO', 'NOME'],
-        }
-      ]
-      });
-
-      
-    
-
-    console.log(turmas)
-    return res.json(turmas)
-  }
-
+  
   async all(req, res){
     try{
       const artistas = await Artista.findAll({ 

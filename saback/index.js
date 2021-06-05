@@ -11,6 +11,7 @@ import AvaliacaoArtistaController from './src/controllers/AvaliacaoArtistaContro
 import "./src/database/database"
 import auth from './src/middlewere/auth'
 import InteresseController from './src/controllers/InteresseController'
+import AvaliacaoEstabelecimentoController from './src/controllers/AvaliacaoEstabelecimentoController'
 app.use(express.json())
 
 
@@ -19,6 +20,7 @@ app.post('/auth/usuario', UsuarioController.index)
 app.use(auth)
 app.post('/avaliacaoartista', AvaliacaoArtistaController.updatelike);
 app.get('/avaliacaoartista', AvaliacaoArtistaController.index);
+app.post('/avaliacaoestabelecimento', AvaliacaoEstabelecimentoController.updatelike);
 app.get('/artistas',auth, ArtistaController.all);
 app.get('/artistas/:id', ArtistaController.unique)
 app.get('/estabelecimentos', EstabelecimentoController.all);

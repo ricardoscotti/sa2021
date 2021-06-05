@@ -5,9 +5,10 @@ import Estabelecimento from '../models/EstabelecimentoModel';
 import Evento from '../models/EventoModel';
 import AvaliacaoArtista from '../models/AvaliacaoArtistaModel'
 import Interesse from '../models/InteresseModel';
+import AvaliacaoEstabelecimento from '../models/AvaliacaoEstabelecimentoModel';
 
 
-const models = [Artista, Usuario, Estabelecimento, Evento, AvaliacaoArtista, Interesse]
+const models = [Artista, Usuario, Estabelecimento, Evento, AvaliacaoArtista, Interesse, AvaliacaoEstabelecimento]
 
 class DataBase {
     constructor(){

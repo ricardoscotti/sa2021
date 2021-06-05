@@ -39,7 +39,13 @@ class Estabelecimento extends Model{
              foreignKey: "id_estabelecimento", 
              sourceKey: "id_estabelecimento", 
              as:"estabelecimento"
-         } );
+         });
+         this.hasMany(model.AvaliacaoEstabelecimento, {
+            constraint: false, 
+            foreignKey: "id_estabelecimento", 
+            sourceKey: "id_estabelecimento", 
+            as:"avaliacaoestabelecimento"}); 
+
      }
 
 }
