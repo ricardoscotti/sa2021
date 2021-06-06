@@ -40,19 +40,53 @@ import {
       }
     }
 
+    const avaliacao = async (type, estabelecimento) => {
+      try{
+        const token = await AsyncStorage.getItem('token')
+        const config = {
+          headers:{
+            'Authorization': `Bearer ${token}`
+          }
+        }
+        const obj = {
+          id_artista: route.params?.userData.id_artista,
+          id_estabelecimento: estabelecimento.item.id_estabelecimento,
+          avaliacao: type
+        }
+        const response = await axios.post('http://localhost:3334/avaliacaoestabelecimento', obj, config)
+        console.log(response.data)
+        await getEstabelecimento()
+      }catch(e){
+
+      }
+  }
+
     const TextEstabelecimento = (estabelecimentos) => {
+      const likes = estabelecimentos.item.avaliacao.reduce((acumulador,item)=>{
+        if(item==='L'){
+          acumulador++
+        }
+        return acumulador
+      },0)
+      const dislikes = estabelecimentos.item.avaliacao.reduce((acumulador,item)=>{
+        if(item==='D'){
+          acumulador++
+        }
+        return acumulador
+      },0)
+
       return(
         
           <View style={styles.row}>
             <Text style={styles.rowText}> {estabelecimentos.item.nome} - {estabelecimentos.item.bairro} </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>avaliacao('L', estabelecimentos)}>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://pics.freeicons.io/uploads/icons/png/18764067051529659194-512.png'}}/>
             </TouchableOpacity>
-            <Text style={styles.rowText}>0</Text>
-            <TouchableOpacity>
+            <Text style={styles.rowText}>{likes}</Text>
+            <TouchableOpacity onPress={()=>avaliacao('D', estabelecimentos)}>
             <Image style={styles.imagem} resizeMode='contain' source={{uri:'https://cdn0.iconfinder.com/data/icons/thin-voting-awards/24/thin-0664_dislike_thumb_down_vote-512.png'}}/>
             </TouchableOpacity>
-            <Text style={styles.rowText}>0</Text>
+            <Text style={styles.rowText}>{dislikes}</Text>
           </View>
         
       )
