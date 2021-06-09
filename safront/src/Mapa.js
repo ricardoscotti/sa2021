@@ -9,18 +9,23 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default Mapa = ({ route }) => {
 
     useEffect(()=>{
-        getEventosPorId()
+       const funcao= async() => await getEventosPorId();
+       funcao()
+       console.log("mostrar"+eventoMap)
       },[])
 
     console.log(route.params.lat, route.params.long, route.params.id_evento)
-    
-    const [region, setRegion]= useState(initialRegion);
+    const objInitialRegion ={
 
-    const [evento, setEvento] = useState()
-    const [eventoLat, setEventoLat] = useState({})
-    const [eventoLongi, setEventoLongi] = useState({})
+      latitude: -27.60820,
+      longitude: -48.45389,
+      latitudeDelta: 0.09,
+      longitudeDelta: 0.045,
+}
+    const [region, setRegion]= useState(objInitialRegion);
 
-    
+    const [eventoMap, setEventoMap] = useState(objInitialRegion)
+      
 
     const getEventosPorId = async () => {
         console.log("AQUIIII")
@@ -34,33 +39,28 @@ export default Mapa = ({ route }) => {
           const response = await api.get(`/eventoporid/${route.params.id_evento}`, config)
           const evento = response.data
           console.log(evento)
-          console.log(evento[0].Estabelecimento.lat)
-           setEventoLat(evento[0].Estabelecimento.lat)
-           setEventoLongi(evento[0].Estabelecimento.longi)
-          
+          console.log(evento[0].Estabelecimento)
+          const {lat:latitude,longi:longitude}=evento[0].Estabelecimento
+          setEventoMap({latitude,longitude,latitudeDelta:0.09,longitudeDelta:0.045})
+ 
      
         }catch(e){
           console.log('ERROR', e)
         }
       }
 
-      const initialRegion = {
-        latitude: Number(eventoLat),
-        longitude: Number(eventoLongi),
-        latitudeDelta: 0.09,
-        longitudeDelta: 0.045,
-    }; 
 
-return(
+
+return(    
     <View style={styles.conteiner}>
         <Text style={styles.textArtista}>Mapa</Text>
         <MapView 
         provider={PROVIDER_GOOGLE}
-        region={region}
+        region={eventoMap}
         style={styles.map}
-        initialRegion={initialRegion}>
+        initialRegion={objInitialRegion}>
 
-        <Marker coordinate={{latitude:Number(eventoLat), longitude:Number(eventoLongi)}}title={route.params.nome} ></Marker>    
+        <Marker coordinate={{latitude:Number(eventoMap.latitude), longitude:Number(eventoMap.longitude)}}title={route.params.nome} ></Marker>    
         </MapView>
     </View>
 );
