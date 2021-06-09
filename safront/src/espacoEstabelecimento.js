@@ -12,6 +12,7 @@ import {
     View,
     FlatList,
     Image,
+    BackHandler, Alert
   } from 'react-native';
   import api from './services/axios';
 
@@ -20,7 +21,26 @@ import {
     useEffect(()=>{
       getArtista()
     },[])
-
+    useEffect(() => {
+      const backAction = () => {
+        Alert.alert("Alerta", "Você deseja sair desta conta?", [
+          {
+            text: "Cancel",
+            onPress: () => null,
+            style: "cancel"
+          },
+          { text: "YES", onPress: () => navigation.navigate('login') }
+        ]);
+        return true;
+      };
+  
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction
+      );
+  
+      return () => backHandler.remove();
+    }, []);
     const [artistas, setArtistas] = useState()
     
     
